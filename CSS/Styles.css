@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Lora', serif;
+  background: #e8e0d0;
+  min-height: 100vh;
+}
+
+.page-wrapper {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #f5f0e8;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 80px;
+}
+
+/* HERO */
+.hero-banner {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #87ceeb, #5ba3d4, #6aaa6a, #4a7a4a);
+}
+
+.hero-banner.siena-bg {
+  background: linear-gradient(135deg, #d4a060, #b4804a, #8b6914, #c4b060);
+}
+.hero-banner.navona-bg {
+  background: linear-gradient(135deg, #e8c880, #d4a840, #b8943a, #e8d090);
+}
+.hero-banner.vaticano-bg {
+  background: linear-gradient(135deg, #a0b8d0, #8098b0, #607090, #b0c0d8);
+}
+
+.hero-scene {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-scene-icon {
+  font-size: 60px;
+  text-shadow: 3px 3px 12px rgba(0,0,0,0.4);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.35) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 16px 16px;
+}
+
+.hero-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+/* SEARCH */
+.search-container {
+  padding: 12px 16px 8px;
+  background: #f5f0e8;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid #c8b89a;
+  border-radius: 6px;
+  padding: 0 12px;
+  height: 42px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'Lora', serif;
+  font-size: 13px;
+  color: #555;
+  background: transparent;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.search-bar input::placeholder { color: #aaa; }
+
+.search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+/* MAIN CONTENT */
+.content-body {
+  padding: 14px 16px 20px;
+}
+
+.piazza-image-block {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  border: 2px solid #c8b89a;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  background: linear-gradient(135deg, #87ceeb, #5ba3d4, #6aaa6a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+}
+
+.piazza-image-block.siena-img {
+  background: linear-gradient(135deg, #d4a060, #b4804a, #c4b060);
+}
+.piazza-image-block.navona-img {
+  background: linear-gradient(135deg, #e8c880, #d4a840, #e8d090);
+}
+.piazza-image-block.vaticano-img {
+  background: linear-gradient(135deg, #a0b8d0, #8098b0, #b0c0d8);
+}
+
+.intro-title {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #5a4a3a;
+  letter-spacing: 0.12em;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.intro-text {
+  font-family: 'Lora', serif;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.75;
+  text-align: justify;
+  margin-bottom: 18px;
+}
+
+.intro-text em {
+  font-style: italic;
+  font-weight: 600;
+  color: #222;
+}
+
+/* CURIOSITÀ SECTION */
+.curiosita-section {
+  background: #3a3a2a;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.curiosita-section::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6aaa6a, #4a8a4a, #6aaa6a);
+  border-radius: 8px 8px 0 0;
+}
+
+.curiosita-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #f0e8d0;
+  text-align: center;
+  margin-bottom: 12px;
+  letter-spacing: 0.03em;
+}
+
+.subsection-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #c8b88a;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin: 10px 0 8px;
+  border-bottom: 1px solid rgba(200,184,138,0.3);
+  padding-bottom: 4px;
+}
+
+.curiosita-intro {
+  font-family: 'Lora', serif;
+  font-size: 12px;
+  color: #d0c8b0;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.curiosita-list {
+  list-style: none;
+  padding: 0;
+}
+
+.curiosita-list li {
+  font-family: 'Lora', serif;
+  font-size: 12px;
+  color: #d0c8b0;
+  line-height: 1.65;
+  padding: 5px 0 5px 14px;
+  position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.curiosita-list li:last-child { border-bottom: none; }
+
+.curiosita-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #6aaa6a;
+  font-size: 10px;
+  top: 7px;
+}
+
+.curiosita-list li strong {
+  color: #f0e8d0;
+  font-weight: 600;
+}
+
+/* BOTTOM BAR */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: #3a3a2a;
+  border-top: 2px solid #6aaa6a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 58px;
+  z-index: 100;
+  padding: 0 10px;
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: #2a2a1a;
+  border: 2px solid #6aaa6a;
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+  min-width: 70px;
+}
+
+.nav-btn:hover { background: #4a4a2a; }
+.nav-btn:active { transform: scale(0.96); }
+
+.nav-btn-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.nav-btn-label {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  color: #c8b88a;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.bar-title {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: #c8b88a;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  flex: 1;
+  padding: 0 8px;
+}

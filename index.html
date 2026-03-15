@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Più Belle Piazze d'Italia</title>
+<link href="CSS/Styles.css" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lora', serif;
+    background: #e8e0d0;
+    min-height: 100vh;
+  }
+
+  .page-wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #f5f0e8;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* HERO BANNER */
+  .hero-banner {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .hero-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      #87ceeb 0%, #5ba3d4 25%,
+      #4a8fbf 50%, #6aaa6a 65%,
+      #4a7a4a 80%, #3a6a3a 100%);
+    z-index: 0;
+  }
+
+  .hero-imgs {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 1;
+  }
+
+  .hero-img-half {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .hero-img-half img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+  }
+
+  .hero-img-half.left {
+    background: linear-gradient(135deg, #6ab0d4, #4a8ab4, #5a9a5a);
+  }
+
+  .hero-img-half.right {
+    background: linear-gradient(135deg, #87ceeb, #6aaad4, #4a8a4a);
+  }
+
+  /* Fallback colored blocks when no images */
+  .hero-block-left {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #6ab0d4 0%, #4a8ab4 40%, #5aaa5a 70%, #3a8a3a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .hero-block-right {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #87ceeb 0%, #5ba3d4 40%, #6aaa6a 70%, #4a7a4a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .scene-icon {
+    font-size: 36px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  }
+
+  .scene-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 18px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0.2) 100%);
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4);
+    line-height: 1.3;
+    padding: 0 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-title span {
+    color: #ffe066;
+  }
+
+  /* SEARCH BAR */
+  .search-container {
+    padding: 14px 16px 10px;
+    background: #f5f0e8;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 2px solid #c8b89a;
+    border-radius: 6px;
+    padding: 0 12px;
+    height: 44px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  .search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    color: #555;
+    background: transparent;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .search-bar input::placeholder {
+    color: #aaa;
+    letter-spacing: 0.15em;
+  }
+
+  .search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    transition: color 0.2s;
+  }
+
+  .search-btn:hover { color: #555; }
+
+  /* SECTION TITLE */
+  .section-title {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #5a4a3a;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 12px 16px 10px;
+    background: #f5f0e8;
+  }
+
+  .section-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c8b89a, transparent);
+    margin: 0 20px 14px;
+  }
+
+  /* GRID */
+  .piazze-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 0 12px 80px;
+  }
+
+  .piazza-card {
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 3px solid #5aaa5a;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: block;
+    background: #ddd;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+
+  .piazza-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    border-color: #3a8a3a;
+  }
+
+  .piazza-card:active {
+    transform: scale(0.98);
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 44px;
+  }
+
+  .card-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.55);
+    padding: 8px 8px 6px;
+    text-align: center;
+  }
+
+  .card-label span {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    line-height: 1.3;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  }
+
+  /* CARD BACKGROUNDS */
+  .card-venezia { background: linear-gradient(135deg, #87ceeb, #5ba3c4, #6a9a6a, #4a7a4a); }
+  .card-siena   { background: linear-gradient(135deg, #d4a060, #b4804a, #c4b060, #a09040); }
+  .card-navona  { background: linear-gradient(135deg, #e8c880, #d4a840, #e8d090, #c4a860); }
+  .card-vaticano{ background: linear-gradient(135deg, #a0b8d0, #8098b0, #b0c0d8, #90a8c8); }
+  .card-napoli  { background: linear-gradient(135deg, #d4c090, #b4a070, #c4b080, #a09060); }
+  .card-firenze { background: linear-gradient(135deg, #c09060, #a07040, #d0a070, #b08050); }
+  .card-milano  { background: linear-gradient(135deg, #b0b8c8, #9098a8, #c0c8d8, #a0a8b8); }
+  .card-catania { background: linear-gradient(135deg, #d0a880, #b08860, #c0b890, #a09870); }
+
+  /* BOTTOM NAV */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background: #f5f0e8;
+    border-top: 2px solid #c8b89a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 54px;
+    z-index: 100;
+  }
+
+  .bottom-nav-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: #8a7a6a;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- HERO -->
+  <div class="hero-banner">
+    <div class="hero-imgs">
+         <img src="IMMAGINI/sfondo home.jpg"
+            alt="Sfondo con mosaico di piazze italiane" class="card-image">
+            </div>
+            <div class="hero-overlay">
+      <h1 class="hero-title">Le Più Belle<br><span>Piazze d'Italia</span></h1>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-container">
+    <div class="search-bar">
+      <input type="text" placeholder="SEARCH">
+      <button class="search-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- SECTION TITLE -->
+  <div class="section-title">Piazze in Primo Piano</div>
+  <div class="section-divider"></div>
+
+  <!-- GRID -->
+  <div class="piazze-grid">
+
+    <a href="venezia.html" class="piazza-card card-venezia">
+      <img src="IMMAGINI/Venezia miniatura HOME.jpg" alt="Piazza San Marco, Venezia" class="card-image">
+      <div class="card-label"><span>Piazza San Marco, Venezia</span></div>
+    </a>
+
+    <a href="siena.html" class="piazza-card card-siena">
+      <img src="IMMAGINI/siena HOME.jpg" alt="Piazza del Campo, Siena" class="card-image">
+      <div class="card-label"><span>Piazza del Campo, Siena</span></div>
+    </a>
+
+    <a href="navona.html" class="piazza-card card-navona">
+      <img src="IMMAGINI/Piazza_Navona miniatura HOME.jpg" alt="Piazza Navona, Roma" class="card-image">
+      <div class="card-label"><span>Piazza Navona, Roma</span></div>
+    </a>
+
+    <a href="vaticano.html" class="piazza-card card-vaticano">
+      <img src="IMMAGINI/piazza-san-pietro miniatura HOME.jpg" alt="Piazza San Pietro, Vaticano" class="card-image">
+      <div class="card-label"><span>Piazza San Pietro, Roma Vaticano</span></div>
+    </a>
+
+    <a href="#" class="piazza-card card-napoli">
+      <img src="IMMAGINI/plebiscito.jpg" alt="Piazza del Plebiscito, Napoli" class="card-image">
+      <div class="card-label"><span>Piazza del Plebiscito, Napoli</span></div>
+    </a>
+
+    <a href="#" class="piazza-card card-firenze">
+      <img src="IMMAGINI/Piazza-Signoria-Firenze.jpg" alt="Piazza della Signoria, Firenze" class="card-image">
+      <div class="card-label"><span>Piazza della Signoria, Firenze</span></div>
+    </a>
+
+    <a href="#" class="piazza-card card-milano">
+      <img src="IMMAGINI/Piazza-del-Duomo-Milano.jpg" alt="Piazza del Duomo, Milano" class="card-image">
+      <div class="card-label"><span>Piazza del Duomo, Milano</span></div>
+    </a>
+
+    <a href="#" class="piazza-card card-catania">
+      <img src="IMMAGINI/piazza-duomo-catania.jpg" alt="Piazza del Duomo, Catania" class="card-image">
+      <div class="card-label"><span>Piazza del Duomo, Catania</span></div>
+    </a>
+
+  </div>
+
+  <div class="bottom-nav">
+    <span class="bottom-nav-label">Le Piazze d'Italia</span>
+  </div>
+
+</div>
+</body>
+</html>
